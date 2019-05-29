@@ -8,6 +8,7 @@ import com.acquisition.entity.CjDataSourceTabColInfoKey;
 import org.apache.ibatis.annotations.Param;
 
 public interface CjDataSourceTabColInfoMapper {
+
     int countByExample(CjDataSourceTabColInfoExample example);
 
     int deleteByExample(CjDataSourceTabColInfoExample example);
