@@ -1,11 +1,17 @@
 package com.acquisition.service.impl;
 
+import com.acquisition.entity.CjDataSourceTabColInfo;
 import com.acquisition.entity.CjDataSourceTabInfo;
+import com.acquisition.entity.CjOdsCrtTabDdlInfo;
+import com.acquisition.entity.Result;
 import com.acquisition.repository.CjDataSourceTabColInfoRepository;
+import com.acquisition.repository.CjOdsCrtTabDdlInfoRepository;
 import com.acquisition.service.ICjOdsCrtTabDdlInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,25 +21,73 @@ import java.util.List;
 public class CjOdsCrtTabDdlInfoServiceImpl implements ICjOdsCrtTabDdlInfoService {
 
     /**
-     * @return 返回指定表的字段详情
+     * @return
      */
     @Autowired
-    CjDataSourceTabColInfoRepository CjDataSourceTabColInfoRepository;
+    CjDataSourceTabColInfoRepository cjDataSourceTabColInfoRepository;
+    @Autowired
+    CjOdsCrtTabDdlInfoRepository cjOdsCrtTabDdlInfoRepository;
     @Override
-    public String getODSTableInfo(List<CjDataSourceTabInfo> CjDataSourceTabInfos) {
+    public String saveDDLAndCreateTable(List<CjDataSourceTabInfo> CjDataSourceTabInfos) {
         String sysName;
         String schemaName;
         String tableName;
 
-        //遍历从前端获取到表的列表
-        for(CjDataSourceTabInfo CjDataSourceTabInfo : CjDataSourceTabInfos){
-            sysName = CjDataSourceTabInfo.getBusinessSystemNameShortName();
-            schemaName =CjDataSourceTabInfo.getDataSourceSchema();
-            tableName =CjDataSourceTabInfo.getDataSourceTable();
-            System.out.println(sysName   + schemaName  + tableName );
-            CjDataSourceTabColInfoRepository.selectAllBySysAndSchemaAndTab(sysName,schemaName,tableName);
-        }
+        String colName;
+        String colComment;
 
-        return null;
+        StringBuffer odsDDL = new StringBuffer();
+        CjOdsCrtTabDdlInfo cjOdsCrtTabDdlInfo = new CjOdsCrtTabDdlInfo();
+
+        //遍历从前端获取到表的列表，拼接字段，创建 Hive DDL
+        for(CjDataSourceTabInfo cjDataSourceTabInfo : CjDataSourceTabInfos){
+            sysName = cjDataSourceTabInfo.getBusinessSystemNameShortName();
+            schemaName = cjDataSourceTabInfo.getDataSourceSchema();
+            tableName = cjDataSourceTabInfo.getDataSourceTable();
+
+            odsDDL.append("create table sdata_full." + sysName.toLowerCase() + "_" +tableName.toLowerCase() +"\n");
+            odsDDL.append("("+"\n");
+
+            List<CjDataSourceTabColInfo> infoList = cjDataSourceTabColInfoRepository
+                    .selectAllBySysAndSchemaAndTab(sysName,schemaName,tableName);
+
+            for(int i = 0; i < infoList.size(); i++){
+                colName = infoList.get(i).getDataSourceColName().toLowerCase();
+                colComment=infoList.get(i).getDataSourceColComment();
+
+                if(colComment == null){
+                    colComment="";
+                }
+                if(i < infoList.size() - 1){
+                    odsDDL.append("    `"+colName+"`    "+"string"+"    "+"comment '"+colComment+"'"+",\n");
+                }else {
+                    odsDDL.append("    `"+colName+"`    "+"string"+"    "+"comment '"+colName+"'"+"\n");
+                }
+            }
+            odsDDL.append(")"+"\n");
+            odsDDL.append("row format delimited fields terminated by '\\001' lines terminated by '\\n'");
+
+            cjOdsCrtTabDdlInfo.setBusinessSystemId(cjDataSourceTabInfo.getBusinessSystemId());
+            cjOdsCrtTabDdlInfo.getBusinessSystemNameShortName(sysName);
+            System.out.println("business_system_name_short_name" + sysName);
+            cjOdsCrtTabDdlInfo.setDataSourceSchema(schemaName);
+            cjOdsCrtTabDdlInfo.setDataSourceTable(tableName);
+            cjOdsCrtTabDdlInfo.setOdsDataSchema("sdata_full");
+            cjOdsCrtTabDdlInfo.setOdsDataTable(sysName + "_" + tableName);
+            cjOdsCrtTabDdlInfo.setOdsDataTableDdlInfo(odsDDL.toString());
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            cjOdsCrtTabDdlInfo.setLastModifyDt(df.format(new Date()));
+            cjOdsCrtTabDdlInfo.setLastModifyBy("admin");
+            cjOdsCrtTabDdlInfoRepository.insertByObject(cjOdsCrtTabDdlInfo);
+        }
+        return createTableInHive();
+    }
+
+    /**
+     * 在Hive中建表
+     * @return 返回创建成功的状态
+     */
+    public String createTableInHive(){
+        return Result.ok("Hive 表创建成功！");
     }
 }

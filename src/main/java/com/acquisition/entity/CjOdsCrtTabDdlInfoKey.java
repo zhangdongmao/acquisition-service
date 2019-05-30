@@ -11,7 +11,7 @@ public class CjOdsCrtTabDdlInfoKey {
 
     private String odsDataTable;
 
-    public String getBusinessSystemNameShortName() {
+    public String getBusinessSystemNameShortName(String sysName) {
         return businessSystemNameShortName;
     }
 

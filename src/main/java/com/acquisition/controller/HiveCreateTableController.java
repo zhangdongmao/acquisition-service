@@ -42,7 +42,7 @@ public class HiveCreateTableController {
         String odsTableList = jsonObject.getString("data");
 
         List<CjDataSourceTabInfo> cjDataSourceTabInfos = JSONObject.parseArray(odsTableList, CjDataSourceTabInfo.class);
-        ICjOdsCrtTabDdlInfoService.getODSTableInfo(cjDataSourceTabInfos);
+        ICjOdsCrtTabDdlInfoService.saveDDLAndCreateTable(cjDataSourceTabInfos);
         return Result.ok("sucess");
     }
 }

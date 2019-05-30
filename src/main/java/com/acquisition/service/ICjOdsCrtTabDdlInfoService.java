@@ -11,5 +11,5 @@ import java.util.List;
  */
 @Service
 public interface ICjOdsCrtTabDdlInfoService {
-    String getODSTableInfo(List<CjDataSourceTabInfo> CjDataSourceTabInfos);
+    String saveDDLAndCreateTable(List<CjDataSourceTabInfo> CjDataSourceTabInfos);
 }

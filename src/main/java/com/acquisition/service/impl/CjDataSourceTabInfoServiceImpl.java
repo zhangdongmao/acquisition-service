@@ -35,8 +35,4 @@ public class CjDataSourceTabInfoServiceImpl implements ICjDataSourceTabInfoServi
         return cjDataSourceTableInfoRepository.selectAllByOdsHiveAndDwHive(dataFlagForGetCols,dataFlagForCrtOdsDll);
     }
 
-    public String susess(){
-        return  Result.ok(JSONObject.toJSON("成功"));
-    }
-
 }
