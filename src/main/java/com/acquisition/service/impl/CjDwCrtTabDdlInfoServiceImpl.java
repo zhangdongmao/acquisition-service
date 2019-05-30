@@ -10,7 +10,7 @@ import com.acquisition.service.ICjDataSourceTabColInfoService;
 import com.acquisition.service.ICjDataSourceTabInfoService;
 import com.acquisition.service.ICjDwCrtTabDdlInfoService;
 import com.acquisition.service.ICjOdsCrtTabDdlInfoService;
-import com.acquisition.tools.Constant;
+import com.acquisition.util.*;
 import com.yili.pool.pool.GroupPoolFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

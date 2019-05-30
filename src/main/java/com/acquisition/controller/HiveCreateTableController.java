@@ -4,7 +4,7 @@ import com.acquisition.entity.CjDataSourceTabInfo;
 import com.acquisition.entity.Result;
 import com.acquisition.service.ICjDataSourceTabInfoService;
 import com.acquisition.service.ICjDwCrtTabDdlInfoService;
-import com.acquisition.tools.Constant;
+import com.acquisition.util.*;
 import com.acquisition.service.ICjOdsCrtTabDdlInfoService;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
@@ -32,6 +32,9 @@ public class HiveCreateTableController {
     ICjDataSourceTabInfoService iCjDataSourceTabInfoService;
     @Autowired
     ICjDwCrtTabDdlInfoService iCjDwCrtTabDdlInfoService;
+    @Autowired
+    ICjOdsCrtTabDdlInfoService ICjOdsCrtTabDdlInfoService;
+
 
     private final static Logger LOGGER = LoggerFactory.getLogger(HiveCreateTableController.class);
 
@@ -60,8 +63,6 @@ public class HiveCreateTableController {
     /**
      * @return 获取前端传来的需要去ODS创建的表信息
      */
-    @Autowired
-    ICjOdsCrtTabDdlInfoService ICjOdsCrtTabDdlInfoService;
     @PostMapping("/createODSTable")
     public String createODSTable(@RequestBody  String data){
         JSONObject jsonObject = JSONObject.parseObject(data);
