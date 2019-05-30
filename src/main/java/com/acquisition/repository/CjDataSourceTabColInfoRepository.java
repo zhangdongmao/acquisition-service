@@ -15,4 +15,5 @@ import java.util.List;
 public interface CjDataSourceTabColInfoRepository {
     @Select("select * from datalake_meta.cj_data_source_tab_col_info where business_system_name_short_name=#{businessSystemNameShortName} and data_source_schema=#{dataSourceSchema} and data_source_table=#{dataSourceTable} order by data_source_col_order asc")
     List<CjDataSourceTabColInfo> selectAllBySysAndSchemaAndTab(@Param("businessSystemNameShortName") String businessSystemNameShortName, @Param("dataSourceSchema") String dataSourceSchema, @Param("dataSourceTable") String dataSourceTable);
+
 }
