@@ -37,6 +37,7 @@ public class CjDataSourceTabInfoServiceImpl implements ICjDataSourceTabInfoServi
         return cjDataSourceTableInfoRepository.selectAllByOdsHiveAndDwHive(dataFlagForGetCols,dataFlagForCrtOdsDll);
     }
 
+<<<<<<< HEAD
     @Override
     public void updcrtDwFlagByObject(CjDataSourceTabInfo cjDataSourceTabInfo) {
             try {
@@ -51,4 +52,6 @@ public class CjDataSourceTabInfoServiceImpl implements ICjDataSourceTabInfoServi
         return  Result.ok(JSONObject.toJSON("成功"));
     }
 
+=======
+>>>>>>> dev
 }
