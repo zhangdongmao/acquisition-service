@@ -10,5 +10,5 @@ import java.util.List;
  */
 @Service
 public interface ICjDataSourceTabInfoService {
-    List<CjDataSourceTabInfo> getAllCjDataSourceTabInfo();
+    List<CjDataSourceTabInfo> findAllByOdsHiveAndDwHive(String dataFlagForGetCols,String dataFlagForCrtOdsDll);
 }
