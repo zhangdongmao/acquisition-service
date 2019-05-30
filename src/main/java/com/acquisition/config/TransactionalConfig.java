@@ -14,6 +14,14 @@ import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
 import org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
+
+/**
+ * @Description: 全局事物注解
+ *
+ * @author yuxk
+ * @create 2019/5/30
+ * @since 1.0.0
+ */
 @Aspect
 @Configuration
 public class TransactionalConfig {
@@ -49,7 +57,6 @@ public class TransactionalConfig {
         source.addTransactionalMethod("is*", txAttr_REQUIRED_READONLY);
         return new TransactionInterceptor(transactionManager, source);
     }
-
 
 
     @Bean
