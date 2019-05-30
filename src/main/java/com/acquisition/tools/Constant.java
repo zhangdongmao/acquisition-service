@@ -11,5 +11,10 @@ public class Constant {
     public static final String TO_BE_DEVELOPED="待开发";
     public static final String UN_DEVELOPED="不开发";
     public static final String DEVELOPED="已开发";
-
+    public static final String ODS_CRT_HIVE="1";
+    public static final String ODS_NO_CRT_HIVE="0";
+    public static final String DW_CRT_HIVE="1";
+    public static final String DW_NO_CRT_HIVE="0";
+    public static final String DW_CRT_DDL="1";
+    public static final String DW_NO_CRT_DDL="0";
 }

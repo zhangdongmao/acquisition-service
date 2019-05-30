@@ -1,5 +1,6 @@
 package com.acquisition.service.impl;
 
+import com.acquisition.entity.CjDataSourceTabColInfo;
 import com.acquisition.entity.CjDataSourceTabInfo;
 import com.acquisition.repository.CjDataSourceTableInfoRepository;
 import com.acquisition.service.ICjDataSourceTabInfoService;
@@ -19,5 +20,16 @@ public class CjDataSourceTabInfoServiceImpl implements ICjDataSourceTabInfoServi
     @Override
     public List<CjDataSourceTabInfo> findAllByOdsHiveAndDwHive(String dataFlagForGetCols,String dataFlagForCrtOdsDll) {
         return cjDataSourceTableInfoRepository.selectAllByOdsHiveAndDwHive(dataFlagForGetCols,dataFlagForCrtOdsDll);
+    }
+
+    @Override
+    public void updcrtDwFlagByObject(CjDataSourceTabInfo cjDataSourceTabInfo) {
+            try {
+                cjDataSourceTableInfoRepository.updcrtDwFlagByObject(cjDataSourceTabInfo);
+            }catch (Exception e){
+
+            }
+
+
     }
 }
