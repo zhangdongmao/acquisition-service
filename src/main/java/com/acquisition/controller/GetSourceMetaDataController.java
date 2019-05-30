@@ -2,6 +2,7 @@ package com.acquisition.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/getSourceMetaData")
 public class GetSourceMetaDataController {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(GetSourceMetaDataController.class);
+
+    @GetMapping("/ffff")
+    public String bbb() {
+      System.out.println("进入测试方法");
+      int gg = 1/0;
+      return "";
+    }
+
 
 }
