@@ -1,5 +1,6 @@
 package com.acquisition.service.impl;
 
+
 import com.acquisition.entity.Result;
 import com.acquisition.repository.CjDataSourceTabColInfoRepository;
 import com.acquisition.service.ICjDataSourceTabColInfoService;
@@ -28,4 +29,5 @@ public class CjDataSourceTabColInfoServiceImpl implements ICjDataSourceTabColInf
                 cjDataSourceTabColInfoRepository.selectAllBySysAndSchemaAndTab(businessSystemNameShortName, dataSourceSchema, dataSourceTable)
         ));
     }
+
 }

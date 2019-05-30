@@ -1,9 +1,12 @@
 package com.acquisition.service;
 
+import org.springframework.stereotype.Service;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
+
 import com.acquisition.entity.CjDataSourceTabInfo;
 import com.acquisition.entity.CjOdsCrtTabDdlInfo;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -11,5 +14,7 @@ import java.util.List;
  */
 @Service
 public interface ICjOdsCrtTabDdlInfoService {
+    String GetODSTableName(String businessSystemNameShortName, String dataSourceSchema, String dataSourceTable);
     String getODSTableInfo(List<CjDataSourceTabInfo> CjDataSourceTabInfos);
+
 }

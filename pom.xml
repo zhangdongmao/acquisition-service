@@ -153,7 +153,11 @@
 			<artifactId>sqljdbc4</artifactId>
 			<version>4.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.yiligroup</groupId>
+			<artifactId>yili-group-pool</artifactId>
+			<version>1.0</version>
+		</dependency>
 		<!--<dependency>-->
 			<!--<groupId>org.springframework</groupId>-->
 			<!--<artifactId>spring-context</artifactId>-->

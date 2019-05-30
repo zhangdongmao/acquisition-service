@@ -1,6 +1,7 @@
 package com.acquisition.service;
 
 import com.acquisition.entity.CjDataSourceTabInfo;
+import com.acquisition.entity.CjDwCrtTabDdlInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,4 +12,6 @@ import java.util.List;
 @Service
 public interface ICjDwCrtTabDdlInfoService {
     String createDwTable(List<CjDataSourceTabInfo> cjDataSourceTabInfoList);
+    void insertByObject(CjDwCrtTabDdlInfo cjDwCrtTabDdlInfo);
+
 }

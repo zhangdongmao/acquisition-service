@@ -1,5 +1,6 @@
 package com.acquisition.service.impl;
 
+import com.acquisition.entity.CjDataSourceTabColInfo;
 import com.acquisition.entity.CjDataSourceTabInfo;
 import com.acquisition.entity.Result;
 import com.acquisition.repository.CjDataSourceTableInfoRepository;
@@ -35,6 +36,16 @@ public class CjDataSourceTabInfoServiceImpl implements ICjDataSourceTabInfoServi
         return cjDataSourceTableInfoRepository.selectAllByOdsHiveAndDwHive(dataFlagForGetCols,dataFlagForCrtOdsDll);
     }
 
+    @Override
+    public void updcrtDwFlagByObject(CjDataSourceTabInfo cjDataSourceTabInfo) {
+            try {
+                cjDataSourceTableInfoRepository.updcrtDwFlagByObject(cjDataSourceTabInfo);
+            }catch (Exception e){
+
+            }
+
+
+    }
     public String susess(){
         return  Result.ok(JSONObject.toJSON("成功"));
     }
