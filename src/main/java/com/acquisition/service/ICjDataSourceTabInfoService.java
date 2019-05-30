@@ -13,4 +13,5 @@ import java.util.List;
 public interface ICjDataSourceTabInfoService {
     List<CjDataSourceTabInfo> findAllByOdsHiveAndDwHive(String dataFlagForGetCols,String dataFlagForCrtOdsDll);
     void updcrtDwFlagByObject(CjDataSourceTabInfo cjDataSourceTabInfo);
+    String findAllByColsAndOds(String dataFlagForGetCols, String dataFlagForCrtOdsDll);
 }

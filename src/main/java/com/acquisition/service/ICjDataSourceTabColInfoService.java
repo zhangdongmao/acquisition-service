@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ICjDataSourceTabColInfoService {
+    String findBySystemAndSchema(String businessSystemNameShortName, String dataSourceSchema ,String dataSourceTable);
 }

@@ -107,8 +107,7 @@ public class CjDwCrtTabDdlInfoServiceImpl implements ICjDwCrtTabDdlInfoService{
              */
 
             CjDwCrtTabDdlInfo cjDwCrtTabDdlInfo=new CjDwCrtTabDdlInfo();
-//            cjDwCrtTabDdlInfo.setBusinessSystemId(cjDataSourceTabInfo.getBusinessSystemId());
-            cjDwCrtTabDdlInfo.setBusinessSystemId("aaa");
+            cjDwCrtTabDdlInfo.setBusinessSystemId(cjDataSourceTabInfo.getBusinessSystemId());
             cjDwCrtTabDdlInfo.setBusinessSystemNameShortName(cjDataSourceTabInfo.getBusinessSystemNameShortName());
             cjDwCrtTabDdlInfo.setDataSourceSchema(cjDataSourceTabInfo.getDataSourceSchema());
             cjDwCrtTabDdlInfo.setDataSourceTable(cjDataSourceTabInfo.getDataSourceTable());
@@ -117,7 +116,6 @@ public class CjDwCrtTabDdlInfoServiceImpl implements ICjDwCrtTabDdlInfoService{
             cjDwCrtTabDdlInfo.setDwDataTable(dwTableName);
 //            System.out.println(dwddl.toString());
             cjDwCrtTabDdlInfo.setDwDataTableDdlInfo(dwddl.toString());
-            System.out.println(cjDwCrtTabDdlInfo.getDwDataTableDdlInfo());
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             cjDwCrtTabDdlInfo.setLastModifyDt(df.format(new Date()));
             iCjDwCrtTabDdlInfoService.insertByObject(cjDwCrtTabDdlInfo);

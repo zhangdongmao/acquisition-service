@@ -227,6 +227,11 @@
 			<artifactId>avro</artifactId>
 			<version>${avro.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.yiligroup</groupId>
+            <artifactId>yili-group-pool</artifactId>
+            <version>1.0</version>
+        </dependency>
 	</dependencies>
 
 	<build>
